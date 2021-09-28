@@ -5,13 +5,13 @@ html {
 body {
     background: #98c3c9;
     background-size: cover;
-    height: calc(100vh - 164px);
+    height: calc(100vh - 124px);
     color: #555;
     font-family: 'Lato';
 }
 
 .header-container {
-    padding-top: 164px;
+    padding-top: 124px;
 }
 
 .menu-item {
