@@ -3,11 +3,21 @@ html {
 }
 
 body {
-    background: #98c3c9;
+    background: #fff;
     background-size: cover;
     height: calc(100vh - 124px);
     color: #555;
     font-family: 'Lato';
+}
+
+.bg-blue {
+    background: #98c3c9;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100%;
 }
 
 .header-container {
@@ -27,6 +37,7 @@ body {
 .row-head {
     height: 44px;
 }
+
 
 /* -------------------------------- Media Queries */
 
