@@ -32,6 +32,9 @@ body {
     color: #fff;
     background-color: #98c3c9;
     border-color: #98c3c9;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+
 }
 
 .row-head {
