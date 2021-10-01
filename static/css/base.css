@@ -34,7 +34,13 @@ body {
     border-color: #98c3c9;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
+}
 
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #98c3c9;
+    box-shadow: 0 0 0 0;
 }
 
 .row-head {

@@ -20,8 +20,13 @@
                         <hr class="w-100 mb-1">
                     </div>
                 </div>
-                <p>All</p>
-                <p>Aquarium</p>
+                <a href="{% url 'products' %}" class="nav-link text-black">All Products</a>
+                <a href="{% url 'products' %}?category=aquarium" class="nav-link text-black">Aquarium</a>
+                <a href="{% url 'products' %}?category=filter" class="nav-link text-black">Filter</a>
+                <a href="{% url 'products' %}?category=light" class="nav-link text-black">Light</a>
+                <a href="{% url 'products' %}?category=heater" class="nav-link text-black">Heater</a>
+                <a href="{% url 'products' %}?category=food" class="nav-link text-black">Food</a>
+                <a href="{% url 'products' %}?category=accessories" class="nav-link text-black">Accessories</a>
             </div>
             
             <div class="col-sm">
