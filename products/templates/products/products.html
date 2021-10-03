@@ -20,7 +20,6 @@
                         <hr class="w-100 mb-1">
                     </div>
                 </div>
-                
                     <a href="{% url 'products' %}" class="nav-link text-black {% for c in current_categories %}{% empty %}fw-bold{% endfor %}">All Products</a>
                     <a href="{% url 'products' %}?category=aquarium" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'aquarium' %}fw-bold{% endif %}{% endfor %}">Aquarium</a>
                     <a href="{% url 'products' %}?category=filter" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'filter' %}fw-bold{% endif %}{% endfor %}">Filter</a>
@@ -28,9 +27,7 @@
                     <a href="{% url 'products' %}?category=heater" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'heater' %}fw-bold{% endif %}{% endfor %}">Heater</a>
                     <a href="{% url 'products' %}?category=food" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'food' %}fw-bold{% endif %}{% endfor %}">Food</a>
                     <a href="{% url 'products' %}?category=accessories" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'accessories' %}fw-bold{% endif %}{% endfor %}">Accessories</a>
-                
             </div>
-            
             <div class="col-9">
                 <div class="row">
                     <div class="col text-center mt-3">
@@ -40,7 +37,28 @@
                 </div>
                 <div class="row">
                     <div class="product-container col-10 offset-1">
-                        <div class="row mt-1 mb-2"></div>
+                        <div class="row mt-1 mb-2">
+                            <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+                                <div class="sort-select-wrapper w-50">
+                                    <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                                        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                                        <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+                                        <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+                                        <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
+                                        <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
+                                        <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                                        <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                                        <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
+                                        <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 order-md-first">
+                                <p class="text-muted mt-3 text-center text-md-left">
+                                    {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+                                </p>
+                            </div>
+                        </div>
                         <div class="row">
                             {% for product in products %}
                                 <div class="col-sm-6 col-md-6 col-lg-4">
@@ -95,4 +113,31 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $('#sort-selector').change(function() {
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+            console.log(currentUrl)
+
+            var selectedVal = selector.val();
+            if(selectedVal != "reset"){
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
+
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
 {% endblock %}
