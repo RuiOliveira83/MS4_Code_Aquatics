@@ -48,6 +48,14 @@ body {
     box-shadow: 0 0 0 0;
 }
 
+.btn-check:focus+.btn-dark, .btn-dark:focus {
+    box-shadow: 0 0 0 0;
+}
+
+.btn-dark:active:focus {
+    box-shadow: 0 0 0 0;
+}
+
 .row-head {
     height: 44px;
 }
