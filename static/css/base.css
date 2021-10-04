@@ -68,6 +68,10 @@ body {
     height: 140px;
     width: auto;
 }
+
+.update-link, .remove-link {
+    cursor: pointer;
+}
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
