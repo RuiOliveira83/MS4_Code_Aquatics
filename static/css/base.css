@@ -36,6 +36,11 @@ body {
     border-bottom-left-radius: 0px;
 }
 
+.btn-outline-black {
+    color: black !important; /* use important to override link colors for <a> elements */
+    border: 1px solid black !important;
+}
+
 .form-control:focus {
     color: #212529;
     background-color: #fff;
