@@ -68,3 +68,10 @@ body {
       max-width: 80%;
     }
 }
+
+@media (max-width: 500px) {
+    .card-img-top {
+        height: 70px;
+        width: auto;
+    }
+}
