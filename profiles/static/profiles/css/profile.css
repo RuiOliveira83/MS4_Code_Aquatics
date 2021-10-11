@@ -1,0 +1,11 @@
+.form-select {
+    color: #555 !important;
+}
+
+.form-select:focus {
+    color: #212529 !important;
+}
+
+#id_default_country option:first-child {
+    color: #555 !important;
+}
