@@ -193,6 +193,9 @@
             <div class="col-12 col-lg-7 mt-5">
                 <h4>
                     <a href="{% url 'products' %}" class="home-button btn btn-lg btn-outline-dark text-uppercase py-2 mx-3 border-3">Back to the shop</a>
+                    {% if from_profile %}
+                        <a href="{% url 'profile' %}" class="home-button btn btn-lg btn-outline-dark text-uppercase py-2 mx-3 border-3">My Profile</a>
+                    {% endif %}
                 </h4>
             </div>
         </div>
