@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-cw30wpuwkz(tfn37&!9mtcvmjqwl#@n*n!ga7^)=(rund*sx&2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['code-aquatics.herokuapp.com', 'localhost']
 
 
 # Application definition
