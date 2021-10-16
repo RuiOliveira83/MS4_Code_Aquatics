@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col border-categories">
+                <div class="row">
+                    <div class="col text-center mt-3">
+                        <a class="nav-link" aria-current="page" href="{% url 'products' %}">
+                            <h2 class="logo-font">Visit our Shop</h2>
+                        </a>
+                        <hr class="w-100 mb-1">
+                    </div>
+                </div>
+                                        
+                <p>Random Product</p>
+                    
+            </div>
+            <div class="col-9">
+                <div class="row">
+                    <div class="col text-center mt-3">
+                        <h2 class="logo-font">Blog</h2>
+                        <hr class="w-100 mb-1">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="product-container col-10 offset-1">
+                        <div class="row">
+                            {% for post in posts %}
+                                <div class="post block">
+                                    <h2 class="subtitle">{{ post.title }}</h2>
+
+                                    <small>Posted at {{ post.created_on }}</small>
+
+                                    
+
+                                    
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
