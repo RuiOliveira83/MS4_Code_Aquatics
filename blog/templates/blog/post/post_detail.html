@@ -58,6 +58,12 @@
                     <div class="card w-75 m-4">
                         <div class="card-body">
                             <h5 class="card-title">{{ post.title }}</h5>
+                            {% if request.user.is_superuser %}
+                                <small class="ml-3">
+                                    <a href="{% url 'edit_post' post.slug %}">Edit</a> | 
+                                    <a class="text-danger" href="{% url 'delete_post' post.slug %}">Delete</a>
+                                </small>
+                            {% endif %}
                             <h6 class="card-subtitle mb-2 text-muted">Posted at {{ post.created_on }}</h6>
                             <p class="card-text">{{ post.body }}</p>
                         </div>

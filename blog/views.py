@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from random import choice
 from .models import Post
 
@@ -12,7 +13,6 @@ def list_posts(request):
     pks = Product.objects.values_list('pk', flat=True)
     random_pk = choice(pks)
     random_product = Product.objects.get(pk=random_pk)
-
 
     context = {
         'random_product': random_product,
@@ -32,12 +32,16 @@ def post_detail(request, slug):
         'random_product': random_product,
         'post': post
     }
-
     return render(request, 'blog/post/post_detail.html', context)
 
 
+@login_required
 def add_post(request):
     """ Add a new blog post """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('blog'))
+
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -58,8 +62,13 @@ def add_post(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_post(request, slug):
     """ Edit a blog post """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('blog'))
+
     post = Post.objects.get(slug=slug)
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES, instance=post)
@@ -82,3 +91,16 @@ def edit_post(request, slug):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def delete_post(request, slug):
+    """ Delete a blog post """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('blog'))
+
+    post = Post.objects.get(slug=slug)
+    post.delete()
+    messages.success(request, 'Post deleted!')
+    return redirect(reverse('blog'))

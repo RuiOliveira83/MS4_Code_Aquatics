@@ -64,7 +64,7 @@
                         {% endif %}
                         <div class="row container-fluid">
                             {% for post in posts %}
-                                <div class="border border-2 mt-3">
+                                <div class="border border-2 mt-1 mb-2">
                                     <a class="nav-link pb-0" href="{% url 'post_detail' post.slug %}">
                                         <h2 class="logo-font text-dark">{{ post.title }}</h2>
                                     </a>
@@ -73,8 +73,14 @@
                                     
                                     <a href="{% url 'post_detail' post.slug %}" class="btn btn-search rounded-1 ms-3 mb-3">
                                        
-                                        <span>Read More</span>
+                                        <span>Read More ...</span>
                                     </a>
+                                    {% if request.user.is_superuser %}
+                                        <small class="ms-3">
+                                            <a href="{% url 'edit_post' post.slug %}">Edit</a> | 
+                                            <a class="text-danger" href="{% url 'delete_post' post.slug %}">Delete</a>
+                                        </small>
+                                    {% endif %}
                                 </div>
                             {% endfor %}
                         </div>
