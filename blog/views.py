@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from random import choice
 from .models import Post
@@ -45,13 +45,40 @@ def add_post(request):
             messages.success(request, 'Successfully added post!')
             return redirect(reverse('blog'))
         else:
-            messages.error(request, 'Failed to add post. Please ensure the form is valid.')
+            messages.error(request, 'Failed to add post. '
+                                    'Please ensure the form is valid.')
     else:
         form = PostForm()
 
     template = 'blog/add_post.html'
     context = {
         'form': form
+    }
+
+    return render(request, template, context)
+
+
+def edit_post(request, slug):
+    """ Edit a blog post """
+    post = Post.objects.get(slug=slug)
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated the blog post!')
+            return redirect(reverse('post_detail', args=[post.slug]))
+        else:
+            messages.error(request,
+                           'Failed to update blog. '
+                           'Please ensure the form is valid.')
+    else:
+        form = PostForm(instance=post)
+        messages.info(request, f'You are editing {post.slug}')
+
+    template = 'blog/edit_post.html'
+    context = {
+        'form': form,
+        'post': post,
     }
 
     return render(request, template, context)
