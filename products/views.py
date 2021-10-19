@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
-from .models import Product, Category
+from .models import Product, Category, Rating
 from .forms import ProductForm
 
 
@@ -64,6 +64,15 @@ def product_detail(request, product_id):
     """ A view to show a specific product """
 
     product = get_object_or_404(Product, pk=product_id)
+
+    # Review
+    if request.method == 'POST' and request.user.is_authenticated:
+        stars = request.POST.get('stars', 3)
+
+        rating = Rating.objects.create(product=product, user=request.user,
+                                       stars=stars)
+
+        return redirect('product_detail', product_id=product_id)
 
     context = {
         'product': product,
