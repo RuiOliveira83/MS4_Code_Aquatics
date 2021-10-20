@@ -56,6 +56,10 @@ body {
     box-shadow: 0 0 0 0;
 }
 
+.btn-hover-blue:hover {
+    background-color: #98c3c9;
+}
+
 .row-head {
     height: 44px;
 }
@@ -71,6 +75,11 @@ body {
 
 .update-link, .remove-link {
     cursor: pointer;
+}
+
+/* ----------------rating system */
+.checked {
+    color: orange;
 }
 
 /* ----------------scroll to the top */

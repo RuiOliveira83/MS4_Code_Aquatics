@@ -82,7 +82,12 @@
                                                     {% if product.get_rating == 0 %}
                                                         <small class="text-muted">No Rating</small>
                                                     {% else %}
-                                                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.get_rating|floatformat:1 }} / 5</small>
+                                                    <small class="fa fa-star{% if product.get_rating > 1 %} checked {% endif %}"></small>
+                                                    <small class="fa fa-star{% if product.get_rating > 2 %} checked {% endif %}"></small>
+                                                    <small class="fa fa-star{% if product.get_rating > 3 %} checked {% endif %}"></small>
+                                                    <small class="fa fa-star{% if product.get_rating > 4 %} checked {% endif %}"></small>
+                                                    <small class="fa fa-star{% if product.get_rating > 5 %} checked {% endif %}"></small>
+                                                    
                                                     {% endif %}
                                                         
                                                     {% if request.user.is_superuser %}

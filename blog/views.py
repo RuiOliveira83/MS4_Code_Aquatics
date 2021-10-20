@@ -16,7 +16,8 @@ def list_posts(request):
 
     context = {
         'random_product': random_product,
-        'posts': posts
+        'posts': posts,
+        'on_blog_page': True,
     }
 
     return render(request, 'blog/list_posts.html', context)
@@ -30,7 +31,8 @@ def post_detail(request, slug):
 
     context = {
         'random_product': random_product,
-        'post': post
+        'post': post,
+        'on_blog_page': True,
     }
     return render(request, 'blog/post/post_detail.html', context)
 
