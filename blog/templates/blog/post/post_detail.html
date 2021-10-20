@@ -21,7 +21,7 @@
                         <hr class="w-100 mb-1">
                     </div>
                 </div>
-                <div class="row h-75">
+                <div class="row">
                     <div class="col border m-3">
                         <div class="card border-0 text-center">
                             {% if random_product.image %}
@@ -57,19 +57,28 @@
                 <div class="row">
                     <div class="card w-75 m-4">
                         <div class="card-body">
-                            <h5 class="card-title">{{ post.title }}</h5>
+                            <h5 class="card-title ms-3">{{ post.title }}</h5>
                             {% if request.user.is_superuser %}
-                                <small class="ml-3">
+                                <small class="ms-3">
                                     <a href="{% url 'edit_post' post.slug %}">Edit</a> | 
                                     <a class="text-danger" href="{% url 'delete_post' post.slug %}">Delete</a>
                                 </small>
                             {% endif %}
-                            <h6 class="card-subtitle mb-2 text-muted">Posted at {{ post.created_on }}</h6>
-                            <p class="card-text">{{ post.body }}</p>
+                            <h6 class="card-subtitle mb-2 text-muted ms-3">Posted at {{ post.created_on }}</h6>
+                            <p class="card-text">{{ post.body|safe }}</p>
                         </div>
                     </div>
                 </div>
-                
+                <div class="row">
+                    <div class="col text-center">
+                        <a href="{% url 'products' %}" class="btn btn-outline-black rounded-1 m-2">
+                            <span class="text-uppercase">Shop Now</span>
+                        </a>
+                        <a href="{% url 'blog' %}" class="btn btn-outline-black rounded-1 m-2">
+                            <span class="text-uppercase">Blog</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
