@@ -51,18 +51,19 @@
                 <div class="row">
                     <div class="col text-center mt-3">
                         <h2 class="logo-font">Blog</h2>
-                        
                         <hr class="w-100 mb-1">
                     </div>
                 </div>
                 <div class="row">
                     <div class="product-container col-10 offset-1">
+                        <!-- if statement to allow a super user to add a new blog post -->
                         {% if user.is_superuser %}
                             <a href="{% url 'add_post' %}" class="btn btn-search rounded-1 ms-3 mt-1">        
                                 <span>Add New Post</span>
                             </a>
                         {% endif %}
                         <div class="row container-fluid">
+                            <!-- for loop to show all the blog posts -->
                             {% for post in posts %}
                                 <div class="border border-2 mt-1 mb-2">
                                     <a class="nav-link pb-0" href="{% url 'post_detail' post.slug %}">
@@ -75,6 +76,7 @@
                                        
                                         <span>Read More ...</span>
                                     </a>
+                                    <!-- if statement to allow a super user to edit or delete the post -->
                                     {% if request.user.is_superuser %}
                                         <small class="ms-3">
                                             <a href="{% url 'edit_post' post.slug %}">Edit</a> | 

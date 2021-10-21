@@ -3,6 +3,7 @@
 {% load bag_tools %}
 
 {% block extra_css %}
+    <!-- extra css file for checkout  page-->
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
@@ -34,6 +35,7 @@
                         <p class="mb-1 mt-0 small text-muted">Subtotal</p>
                     </div>
                 </div>
+                <!-- for loop to show all the elements in the user's bag -->
                 {% for item in bag_items %}
                     <div class="row">
                         <div class="col-2 mb-1">

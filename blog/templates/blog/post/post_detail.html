@@ -12,6 +12,7 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
+            <!-- Column with a link to the shop and a link to a random product -->
             <div class="col border-categories d-none d-md-block">
                 <div class="row">
                     <div class="col text-center mt-3">
@@ -58,6 +59,7 @@
                     <div class="card w-75 m-4">
                         <div class="card-body">
                             <h5 class="card-title ms-3">{{ post.title }}</h5>
+                            <!-- if statement to allow a super user to edit or delete the post -->
                             {% if request.user.is_superuser %}
                                 <small class="ms-3">
                                     <a href="{% url 'edit_post' post.slug %}">Edit</a> | 
@@ -71,6 +73,7 @@
                 </div>
                 <div class="row">
                     <div class="col text-center">
+                        <!-- links to guide the user to the shop or to the blog -->
                         <a href="{% url 'products' %}" class="btn btn-outline-black rounded-1 m-2">
                             <span class="text-uppercase">Shop Now</span>
                         </a>

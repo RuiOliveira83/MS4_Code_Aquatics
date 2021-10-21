@@ -25,6 +25,7 @@
     </div>
     <div class="row">
         <div class="col-lg-5 col-10 offset-1">
+            <!-- form with user information -->
             <p class="text-muted">Default Delivery Information</p>
             <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                 {% csrf_token %}
@@ -46,6 +47,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- for loop to show the order's history -->
                         {% for order in orders %}
                             <tr>
                                 <td>

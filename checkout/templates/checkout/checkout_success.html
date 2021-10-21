@@ -19,19 +19,19 @@
         <div class="row">
             <div class="col text-center mt-3">
                 <h2 class="logo-font">Thank you</h2>
-                <hr class="">
+                <hr>
                 <p>Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-lg-7">
-                <div class="order-confirmation-wrapper p-2 border">
+                <div class="order-confirmation-wrapper p-2">
+                    <!-- Information regarding order displayed here: -->
                     <div class="row">
                         <div class="col">
                             <small class="text-muted">Order Info:</small>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-dark"><strong>Order Number</strong></p>
@@ -40,7 +40,6 @@
                             <p class="mb-0"><small>{{ order.order_number }}</small></p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-dark"><strong>Order Date</strong></p>
@@ -49,13 +48,12 @@
                             <p class="mb-0">{{ order.date }}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col">
                             <small class="text-muted">Order Details:</small>
                         </div>
                     </div>
-
+                    <!-- for loop to show all products bought -->
                     {% for item in order.lineitems.all %}
                     <div class="row">
                         <div class="col-12 col-md-4">
@@ -68,13 +66,11 @@
                         </div>
                     </div>
                     {% endfor %}
-
                     <div class="row">
                         <div class="col">
                             <small class="text-muted">Delivering To:</small>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-dark"><strong>Full Name</strong></p>
@@ -83,7 +79,6 @@
                             <p class="mb-0">{{ order.full_name }}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-dark"><strong>Address 1</strong></p>
@@ -92,7 +87,7 @@
                             <p class="mb-0">{{ order.street_address1 }}</p>
                         </div>
                     </div>
-
+                    <!-- if statement to display address2 only if it exists -->
                     {% if order.street_address2 %}
                     <div class="row">
                         <div class="col-12 col-md-4">
@@ -103,7 +98,7 @@
                         </div>
                     </div>
                     {% endif %}
-
+                    <!-- if statement to display county only if it exists -->
                     {% if order.county %}
                     <div class="row">
                         <div class="col-12 col-md-4">
@@ -114,7 +109,6 @@
                         </div>
                     </div>
                     {% endif %}
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-dark"><strong>Town or City</strong></p>
@@ -123,7 +117,7 @@
                             <p class="mb-0">{{ order.town_or_city }}</p>
                         </div>
                     </div>
-
+                    <!-- if statement to display postcode only if it exists -->
                     {% if order.postcode %}
                     <div class="row">
                         <div class="col-12 col-md-4">
@@ -134,7 +128,6 @@
                         </div>
                     </div>
                     {% endif %}
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-dark"><strong>Country</strong></p>
@@ -143,7 +136,6 @@
                             <p class="mb-0">{{ order.country }}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-dark"><strong>Phone Number</strong></p>
@@ -152,13 +144,11 @@
                             <p class="mb-0">{{ order.phone_number }}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col">
                             <small class="text-muted">Billing Info:</small>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-dark"><strong>Order Total</strong></p>
@@ -167,7 +157,6 @@
                             <p class="mb-0">{{ order.order_total }}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-dark"><strong>Delivery</strong></p>
@@ -176,7 +165,6 @@
                             <p class="mb-0">{{ order.delivery_cost }}</p>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <p class="mb-0 text-dark"><strong>Grand Total</strong></p>
@@ -188,11 +176,12 @@
                 </div>
             </div>
         </div>
-        
         <div class="row justify-content-center">
             <div class="col-12 col-lg-7 mt-5">
+                <!-- links to the shop and to the profile page -->
                 <h4>
                     <a href="{% url 'products' %}" class="home-button btn btn-lg btn-outline-dark text-uppercase py-2 mx-3 border-3">Back to the shop</a>
+                    <!-- if statement to show a link to his profile page, if the user came from the profile page -->
                     {% if from_profile %}
                         <a href="{% url 'profile' %}" class="home-button btn btn-lg btn-outline-dark text-uppercase py-2 mx-3 border-3">My Profile</a>
                     {% endif %}

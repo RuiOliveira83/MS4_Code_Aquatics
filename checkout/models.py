@@ -1,3 +1,4 @@
+""" import universally unique identifier """
 import uuid
 
 from django.db import models
@@ -11,6 +12,7 @@ from profiles.models import UserProfile
 
 
 class Order(models.Model):
+    """ Fields to be used when a order is done """
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True,
@@ -46,7 +48,8 @@ class Order(models.Model):
         Update grand total each time a line item is added,
         accounting for delivery costs.
         """
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        self.order_total = self.lineitems.aggregate(
+            Sum('lineitem_total'))['lineitem_total__sum'] or 0
         self.delivery_cost = (self.order_total * settings
                               .STANDARD_DELIVERY_PERCENTAGE / 100)
         self.grand_total = self.order_total + self.delivery_cost

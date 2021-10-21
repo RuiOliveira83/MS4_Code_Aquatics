@@ -9,6 +9,7 @@ from .forms import PostForm
 
 
 def list_posts(request):
+    """ A view to show all posts and select a random product from products """
     posts = Post.objects.all()
     pks = Product.objects.values_list('pk', flat=True)
     random_pk = choice(pks)
@@ -24,6 +25,7 @@ def list_posts(request):
 
 
 def post_detail(request, slug):
+    """ A view to show a post and select a random product from products """
     post = Post.objects.get(slug=slug)
     pks = Product.objects.values_list('pk', flat=True)
     random_pk = choice(pks)
