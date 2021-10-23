@@ -12,7 +12,7 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col border-categories d-none d-md-block">
+            <div class="col-3 border-categories d-none d-md-block">
                 <div class="row">
                     <div class="col text-center mt-3">
                         <a class="nav-link p-0 text-dark" aria-current="page" href="{% url 'products' %}">
@@ -21,7 +21,7 @@
                         <hr class="w-100 mb-1">
                     </div>
                 </div>
-                <div class="row h-75">
+                <div class="row">
                     <div class="col border m-3">
                         <div class="card border-0 text-center">
                             {% if random_product.image %}
@@ -47,67 +47,71 @@
                     </div>
                 </div>                        
             </div>
-            <div class="col-9">
-                <div class="row">
-                    <div class="col text-center mt-3">
-                        <h2 class="logo-font">Blog</h2>
-                        <hr class="w-100 mb-1">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="product-container col-10 offset-1">
-                        <!-- if statement to allow a super user to add a new blog post -->
-                        {% if user.is_superuser %}
-                            <a href="{% url 'add_post' %}" class="btn btn-search rounded-1 ms-3 mt-1">        
-                                <span>Add New Post</span>
+            <div class="col">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center mt-3">
+                            <a class="nav-link p-0 text-dark" aria-current="page" href="{% url 'blog' %}">
+                                <h2 class="logo-font">Blog</h2>
                             </a>
-                        {% endif %}
-                        <div class="row container-fluid">
-                            <!-- for loop to show all the blog posts -->
-                            {% for post in posts %}
-                                <div class="border border-2 mt-1 mb-2">
-                                    <a class="nav-link pb-0" href="{% url 'post_detail' post.slug %}">
-                                        <h2 class="logo-font text-dark">{{ post.title }}</h2>
-                                    </a>
-                                    <small class="text-muted ps-3">Posted at {{ post.created_on }}</small>
-                                    <p class="ps-3">{{ post.body|slice:":140"|safe }}</p>
-                                    
-                                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-search rounded-1 ms-3 mb-3">
-                                       
-                                        <span>Read More ...</span>
-                                    </a>
-                                    <!-- if statement to allow a super user to edit or delete the post -->
-                                    {% if request.user.is_superuser %}
-                                        <small class="ms-3">
-                                            <a href="{% url 'edit_post' post.slug %}">Edit</a> | 
-                                            <!-- Modal to make sure the superuser doesn't delete a bolg post unintentionally -->
-                                            <!-- Button trigger modal -->
-                                            <a href="" type="button" class="text-danger" data-bs-toggle="modal" data-bs-target="#d{{ post.slug }}">
-                                                Delete
-                                            </a>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="d{{ post.slug }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Delete Post "{{ post.title }}"</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <hr class="w-100 mb-1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <!-- if statement to allow a super user to add a new blog post -->
+                            {% if user.is_superuser %}
+                                <a href="{% url 'add_post' %}" class="btn btn-search rounded-1 ms-3 mt-1">        
+                                    <span>Add New Post</span>
+                                </a>
+                            {% endif %}
+                            <div class="row container-fluid">
+                                <!-- for loop to show all the blog posts -->
+                                {% for post in posts %}
+                                    <div class="border border-2 mt-1 mb-2">
+                                        <a class="nav-link pb-0" href="{% url 'post_detail' post.slug %}">
+                                            <h2 class="logo-font text-dark">{{ post.title }}</h2>
+                                        </a>
+                                        <small class="text-muted ps-3 d-none d-sm-block">Posted at {{ post.created_on }}</small>
+                                        <span class="d-none d-md-block"><p class="ps-3 ">{{ post.body|slice:":140"|safe }}</p></span>
+                                        
+                                        <a href="{% url 'post_detail' post.slug %}" class="btn btn-search rounded-1 ms-3 mb-3">
+                                        
+                                            <span>Read More ...</span>
+                                        </a>
+                                        <!-- if statement to allow a super user to edit or delete the post -->
+                                        {% if request.user.is_superuser %}
+                                            <small class="ms-3">
+                                                <a href="{% url 'edit_post' post.slug %}">Edit</a> | 
+                                                <!-- Modal to make sure the superuser doesn't delete a bolg post unintentionally -->
+                                                <!-- Button trigger modal -->
+                                                <a href="" type="button" class="text-danger" data-bs-toggle="modal" data-bs-target="#d{{ post.slug }}">
+                                                    Delete
+                                                </a>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="d{{ post.slug }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Delete Post "{{ post.title }}"</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to delete this post?</p>
+                                                            <p>This action will be permanent!</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="#!" data-bs-dismiss="modal" class="modal-close btn">Keep Post</a>
+                                                            <a href="{% url 'delete_post' post.slug %}" class="modal-close text-danger btn">Delete Post</a>
+                                                        </div>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <p>Are you sure you want to delete this post?</p>
-                                                        <p>This action will be permanent!</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <a href="#!" data-bs-dismiss="modal" class="modal-close btn">Keep Post</a>
-                                                        <a href="{% url 'delete_post' post.slug %}" class="modal-close text-danger btn">Delete Post</a>
                                                     </div>
                                                 </div>
-                                                </div>
-                                            </div>
-                                        </small>
-                                    {% endif %}
-                                </div>
-                            {% endfor %}
+                                            </small>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Column with a link to the shop and a link to a random product -->
-            <div class="col border-categories d-none d-md-block">
+            <div class="col-3 border-categories d-none d-md-block">
                 <div class="row">
                     <div class="col text-center mt-3">
                         <a class="nav-link p-0 text-dark" aria-current="page" href="{% url 'products' %}">
@@ -48,49 +48,53 @@
                     </div>
                 </div>                        
             </div>
-            <div class="col-9">
-                <div class="row">
-                    <div class="col text-center mt-3">
-                        <h2 class="logo-font">Blog</h2>
-                        <hr class="w-100 mb-1">
+            <div class="col">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center mt-3">
+                            <a class="nav-link p-0 text-dark" aria-current="page" href="{% url 'blog' %}">
+                                <h2 class="logo-font">Blog</h2>
+                            </a>
+                            <hr class="w-100 mb-1">
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="card w-75 m-4">
-                        <div class="card-body">
-                            <h5 class="card-title ms-3">{{ post.title }}</h5>
-                            <!-- if statement to allow a super user to edit or delete the post -->
-                            {% if request.user.is_superuser %}
-                                <small class="ms-3">
-                                    <a href="{% url 'edit_post' post.slug %}">Edit</a> | 
-                                    <!-- Modal to make sure the superuser doesn't delete a bolg post unintentionally -->
-                                    <!-- Button trigger modal -->
-                                    <a href="" type="button" class="text-danger" data-bs-toggle="modal" data-bs-target="#d{{ post.slug }}">
-                                        Delete
-                                    </a>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="d{{ post.slug }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Delete Post "{{ post.title }}"</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="row">
+                        <div class="card w-100 m-3">
+                            <div class="card-body">
+                                <h5 class="card-title ms-3">{{ post.title }}</h5>
+                                <!-- if statement to allow a super user to edit or delete the post -->
+                                {% if request.user.is_superuser %}
+                                    <small class="ms-3">
+                                        <a href="{% url 'edit_post' post.slug %}">Edit</a> | 
+                                        <!-- Modal to make sure the superuser doesn't delete a bolg post unintentionally -->
+                                        <!-- Button trigger modal -->
+                                        <a href="" type="button" class="text-danger" data-bs-toggle="modal" data-bs-target="#d{{ post.slug }}">
+                                            Delete
+                                        </a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="d{{ post.slug }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete Post "{{ post.title }}"</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Are you sure you want to delete this post?</p>
+                                                    <p>This action will be permanent!</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="#!" data-bs-dismiss="modal" class="modal-close btn">Keep Post</a>
+                                                    <a href="{% url 'delete_post' post.slug %}" class="modal-close text-danger btn">Delete Post</a>
+                                                </div>
                                             </div>
-                                            <div class="modal-body">
-                                                <p>Are you sure you want to delete this post?</p>
-                                                <p>This action will be permanent!</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a href="#!" data-bs-dismiss="modal" class="modal-close btn">Keep Post</a>
-                                                <a href="{% url 'delete_post' post.slug %}" class="modal-close text-danger btn">Delete Post</a>
                                             </div>
                                         </div>
-                                        </div>
-                                    </div>
-                                </small>
-                            {% endif %}
-                            <h6 class="card-subtitle mb-2 text-muted ms-3">Posted at {{ post.created_on }}</h6>
-                            <p class="card-text">{{ post.body|safe }}</p>
+                                    </small>
+                                {% endif %}
+                                <h6 class="card-subtitle mb-2 text-muted ms-3">Posted at {{ post.created_on }}</h6>
+                                <p class="card-text">{{ post.body|safe }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
