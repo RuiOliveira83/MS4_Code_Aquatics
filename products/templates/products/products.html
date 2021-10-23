@@ -17,10 +17,28 @@
                 <div class="row">
                     <div class="col text-center mt-3">
                         <!-- display links to all categories. If a category is selected, his name will be displayed in bold text -->
-                        <h2 class="logo-font">Categories</h2>
+                        <h2 class="logo-font d-none d-sm-block">Categories</h2>
+                        <!-- collapsable sidebar, to show only on small screen sizes -->
+                        <div class="d-block d-sm-none">
+                            <h2></h2>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <h3 class="border rounded p-1">Categories <i class="fas fa-sort-down"></i></h3>
+                            </button>
+                            <div class="collapse navbar-collapse bg-white text-start" id="navbarSupportedContent2">
+                                <a href="{% url 'products' %}" class="nav-link text-black {% for c in current_categories %}{% empty %}fw-bold{% endfor %}">All Products</a>
+                                <a href="{% url 'products' %}?category=aquarium" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'aquarium' %}fw-bold{% endif %}{% endfor %}">Aquarium</a>
+                                <a href="{% url 'products' %}?category=filter" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'filter' %}fw-bold{% endif %}{% endfor %}">Filter</a>
+                                <a href="{% url 'products' %}?category=light" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'light' %}fw-bold{% endif %}{% endfor %}">Light</a>
+                                <a href="{% url 'products' %}?category=heater" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'heater' %}fw-bold{% endif %}{% endfor %}">Heater</a>
+                                <a href="{% url 'products' %}?category=food" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'food' %}fw-bold{% endif %}{% endfor %}">Food</a>
+                                <a href="{% url 'products' %}?category=accessories" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'accessories' %}fw-bold{% endif %}{% endfor %}">Accessories</a>
+                            </div>
+                        </div>
                         <hr class="w-100 mb-1">
                     </div>
                 </div>
+                <!-- Categories Displayed on screens larger than small -->
+                <div class="d-none d-sm-block">
                     <a href="{% url 'products' %}" class="nav-link text-black {% for c in current_categories %}{% empty %}fw-bold{% endfor %}">All Products</a>
                     <a href="{% url 'products' %}?category=aquarium" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'aquarium' %}fw-bold{% endif %}{% endfor %}">Aquarium</a>
                     <a href="{% url 'products' %}?category=filter" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'filter' %}fw-bold{% endif %}{% endfor %}">Filter</a>
@@ -28,8 +46,10 @@
                     <a href="{% url 'products' %}?category=heater" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'heater' %}fw-bold{% endif %}{% endfor %}">Heater</a>
                     <a href="{% url 'products' %}?category=food" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'food' %}fw-bold{% endif %}{% endfor %}">Food</a>
                     <a href="{% url 'products' %}?category=accessories" class="nav-link text-black {% for c in current_categories %}{% if c.name == 'accessories' %}fw-bold{% endif %}{% endfor %}">Accessories</a>
+                </div>
+
             </div>
-            <div class="col-9">
+            <div class="col-12 col-sm-9">
                 <div class="row">
                     <div class="col text-center mt-3">
                         <h2 class="logo-font">Products</h2>
@@ -46,8 +66,6 @@
                                         <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                                         <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                                         <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
-                                        <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
-                                        <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
                                         <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
                                         <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
                                         <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
