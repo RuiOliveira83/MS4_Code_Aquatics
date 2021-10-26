@@ -102,11 +102,11 @@
                                                     {% if product.get_rating == 0 %}
                                                         <small class="text-muted">No Rating</small>
                                                     {% else %}
-                                                    <small class="fa fa-star{% if product.get_rating > 1 %} checked {% endif %}"></small>
-                                                    <small class="fa fa-star{% if product.get_rating > 2 %} checked {% endif %}"></small>
-                                                    <small class="fa fa-star{% if product.get_rating > 3 %} checked {% endif %}"></small>
-                                                    <small class="fa fa-star{% if product.get_rating > 4 %} checked {% endif %}"></small>
-                                                    <small class="fa fa-star{% if product.get_rating > 5 %} checked {% endif %}"></small>
+                                                    <small class="fa fa-star{% if product.get_rating >= 1 %} checked {% endif %}"></small>
+                                                    <small class="fa fa-star{% if product.get_rating >= 2 %} checked {% endif %}"></small>
+                                                    <small class="fa fa-star{% if product.get_rating >= 3 %} checked {% endif %}"></small>
+                                                    <small class="fa fa-star{% if product.get_rating >= 4 %} checked {% endif %}"></small>
+                                                    <small class="fa fa-star{% if product.get_rating >= 5 %} checked {% endif %}"></small>
                                                     
                                                     {% endif %}
                                                         
