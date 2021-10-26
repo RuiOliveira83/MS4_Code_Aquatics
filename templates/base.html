@@ -50,7 +50,7 @@
                     <div class="row row-head w-100">
                         <div class="col-4">
                             <a class="navbar-brand" href="{% url 'home' %}">
-                                <h2 class="logo-font my-0 text-dark">Code Aquatics</h2>
+                                <h2 class="logo-font text-dark">Code Aquatics</h2>
                             </a>
                         </div>
                         <div class="col-6 col-md-7 text-end">
@@ -70,18 +70,18 @@
                                         </div>
                                     </div>
                                 </form>
-                                <ul class="navbar-nav me-auto mb-2 mb-lg-0 px-16">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ps-2">
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark px-16" aria-current="page" href="{% url 'products' %}">Shop</a>
+                                        <a class="nav-link text-dark ps-2" aria-current="page" href="{% url 'products' %}">Shop</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" href="{% url 'blog' %}">Blog</a>
+                                        <a class="nav-link text-dark ps-2" href="{% url 'blog' %}">Blog</a>
                                     </li>
-                                    <li class="nav-item dropdown">
+                                    <li class="nav-item dropdown ps-2">
                                         <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             My Account
                                         </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <ul class="dropdown-menu me-2 mb-2" aria-labelledby="navbarDropdown">
                                             {% if request.user.is_authenticated %}
                                                 <li><a class="dropdown-item" href="{% url 'profile' %}">My Profile</a></li>
                                                 {% if request.user.is_superuser %}
