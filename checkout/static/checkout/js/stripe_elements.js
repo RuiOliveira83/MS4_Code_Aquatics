@@ -51,6 +51,7 @@ form.addEventListener('submit', function(ev) {
     ev.preventDefault();
     card.update({ 'disabled': true});
     $('#submit-button').attr('disabled', true);
+    $('#loading-overlay').fadeToggle(100);
     
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
     // From using {% csrf_token %} in the form
@@ -101,6 +102,7 @@ form.addEventListener('submit', function(ev) {
                     <span>${result.error.message}</span>
                 `;
                 $(errorDiv).html(html);
+                $('#loading-overlay').fadeToggle(100);
             } else {
             // The payment has been processed!
                 if (result.paymentIntent.status === 'succeeded') {

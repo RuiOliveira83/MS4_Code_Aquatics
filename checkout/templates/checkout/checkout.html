@@ -17,6 +17,7 @@
 {% endblock %}
 
 {% block content %}
+
     <div class="container mb2">
         <div class="row">
             <div class="col text-center mt-3">
@@ -89,18 +90,10 @@
                         {{ order_form.street_address1 | as_crispy_field }}
                         {{ order_form.street_address2 | as_crispy_field }}
                         {{ order_form.county | as_crispy_field }}
-                        <div class="form-check form-check-inline float-end mr-0">
-							{% if user.is_authenticated %}
-								<label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
-                                <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
-							{% else %}
-								<label class="form-check-label" for="id-save-info">
-                                    <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or 
-                                    <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
-                                </label>
-							{% endif %}
-						</div>
+                        
+                        
                     </fieldset>
+                    
                     <fieldset class="px-3">
                         <legend class="fieldset-label small text-dark px-2 w-auto">Payment</legend>
                         <!-- A Stripe card element will go here -->
@@ -135,6 +128,14 @@
             </div>
         </div>
     </div>
+    <div id="loading-overlay">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border spinner-style" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+    
 {% endblock %}
 
 {% block postloadjs %}
