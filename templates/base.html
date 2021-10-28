@@ -143,6 +143,13 @@
         {% block content %}
         {% endblock %}
 
+        {% block page_footer %}
+        {% endblock %}
+        
+        <footer class="container-fluid fixed-bottom px-0">
+            {% include 'includes/footer.html' %}
+        </footer>
+
         {% block postloadjs %}
         <script type="text/javascript">
             window.onload = (event)=> {
