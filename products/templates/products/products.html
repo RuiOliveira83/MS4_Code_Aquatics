@@ -20,9 +20,9 @@
                         <h2 class="logo-font d-none d-sm-block">Categories</h2>
                         <!-- collapsable sidebar, to show only on small screen sizes -->
                         <div class="d-block d-sm-none">
-                            <h2></h2>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <h3 class="border rounded p-1">Categories <i class="fas fa-sort-down"></i></h3>
+                            
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="logo-font fw-bold text-secondary">Categories: </span><i class="fas fa-sort-down text-secondary"></i>
                             </button>
                             <div class="collapse navbar-collapse bg-white text-start" id="navbarSupportedContent2">
                                 <a href="{% url 'products' %}" class="nav-link text-black {% for c in current_categories %}{% empty %}fw-bold{% endfor %}">All Products</a>
@@ -111,7 +111,7 @@
                                                     {% endif %}
                                                         
                                                     {% if request.user.is_superuser %}
-                                                        <small class="ms-3">
+                                                        <div>
                                                             <a href="{% url 'edit_product' product.id %}">Edit</a> | 
                                                             <!-- Modal to make sure the superuser doesn't delete a product unintentionally -->
                                                             <!-- Button trigger modal -->
@@ -137,7 +137,7 @@
                                                                 </div>
                                                                 </div>
                                                             </div>
-                                                        </small>
+                                                        </div>
                                                     {% endif %}
                                                 </div>
                                             </div>
@@ -188,13 +188,11 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript">
+    <script>
 		$('.btt-link').click(function(e) {
 			window.scrollTo(0,0)
 		})
-	</script>
 
-    <script type="text/javascript">
         $('#sort-selector').change(function() {
             var selector = $(this);
             var currentUrl = new URL(window.location);

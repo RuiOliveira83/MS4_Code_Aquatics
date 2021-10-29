@@ -64,7 +64,7 @@
                                 <h5 class="card-title ms-3">{{ post.title }}</h5>
                                 <!-- if statement to allow a super user to edit or delete the post -->
                                 {% if request.user.is_superuser %}
-                                    <small class="ms-3">
+                                    <div class="ms-3">
                                         <a href="{% url 'edit_post' post.slug %}">Edit</a> | 
                                         <!-- Modal to make sure the superuser doesn't delete a bolg post unintentionally -->
                                         <!-- Button trigger modal -->
@@ -90,7 +90,7 @@
                                             </div>
                                             </div>
                                         </div>
-                                    </small>
+                                    </div>
                                 {% endif %}
                                 <h6 class="card-subtitle mb-2 text-muted ms-3">Posted at {{ post.created_on }}</h6>
                                 <p class="card-text">{{ post.body|safe }}</p>
@@ -109,6 +109,15 @@
                         </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_footer %}
+    <div class="container footer-container">
+        <div class="row">
+            <div class="col">
             </div>
         </div>
     </div>

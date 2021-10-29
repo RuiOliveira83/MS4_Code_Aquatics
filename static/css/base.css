@@ -32,10 +32,9 @@ body {
     text-decoration: none !important;
 }
 
-/* .text-blue {
-    color: #98c3c9;
-    text-decoration: none !important;
-} */
+.logo-font {
+    text-transform: uppercase;
+}
 
 
 .btn-search {

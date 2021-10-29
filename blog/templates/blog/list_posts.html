@@ -73,15 +73,16 @@
                                             <h2 class="logo-font text-dark">{{ post.title }}</h2>
                                         </a>
                                         <small class="text-muted ps-3 d-none d-sm-block">Posted at {{ post.created_on }}</small>
-                                        <span class="d-none d-md-block"><p class="ps-3 ">{{ post.body|slice:":140"|safe }}</p></span>
+                                        <small class="d-none d-sm-block mt-2 mb-2">{{ post.body|slice:":140"|safe }}</small>
                                         
-                                        <a href="{% url 'post_detail' post.slug %}" class="btn btn-search rounded-1 ms-3 mb-3">
+                                        
+                                        <a href="{% url 'post_detail' post.slug %}" class="btn btn-search rounded-1">
                                         
                                             <span>Read More ...</span>
                                         </a>
                                         <!-- if statement to allow a super user to edit or delete the post -->
                                         {% if request.user.is_superuser %}
-                                            <small class="ms-3">
+                                            <div class="ms-3 mb-2">
                                                 <a href="{% url 'edit_post' post.slug %}">Edit</a> | 
                                                 <!-- Modal to make sure the superuser doesn't delete a bolg post unintentionally -->
                                                 <!-- Button trigger modal -->
@@ -107,7 +108,7 @@
                                                     </div>
                                                     </div>
                                                 </div>
-                                            </small>
+                                            </div>
                                         {% endif %}
                                     </div>
                                 {% endfor %}
@@ -115,6 +116,15 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_footer %}
+    <div class="container footer-container">
+        <div class="row">
+            <div class="col">
             </div>
         </div>
     </div>
