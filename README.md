@@ -44,7 +44,7 @@ A live view of this website can be found here: [Code Aquatics](https://code-aqua
 * As a shopper user, I want to be able to sort the products by name, price and category so that I can easily identify the best for me;
 * As a shopper user, I want to be able to view individual product details such as price, description and rating so that I can decide if that's the product I want to buy;
 * As a shopper user, I want to view the total of my purchase at any time so that I can avoid spending too much;
-* As a shopper user, I want to easily view the items in my bag so that I can all the items of my purchase and the cost of those items ;
+* As a shopper user, I want to easily view the items in my bag so that I can check if I have everything I want;
 * As a shopper user, I want to adjust the items in my bag before the checkout so that I can easily make changes before checking out;
 * As a shopper user, I want the payment to feel secure, safe and easy so that I can have confidence in this website and a peaceful experience;
 * As a shopper user, I want to view an order confirmation after checking out so that I can verify I didn't make any mistakes;
@@ -55,7 +55,7 @@ A live view of this website can be found here: [Code Aquatics](https://code-aqua
 * As a registered user, I want to easily log in and log out so that I can access my account;
 * As a registered user, I want to have a personalized user profile so that I can view my details and my order history;
 
-* As a store owner, I want to be able to add a new blog post so that I can make the blog session always fresh and interessant;
+* As a store owner, I want to be able to add a new blog post so that I can make the blog session always fresh and interesting;
 * As a store owner, I want to be able to edit any blog post so that I can amend or add information to a post;
 * As a store owner, I want to be able to delete any blog post if I feel that there is no need to have that post anymore;
 * As a store owner, I want to be able to add a new product so that I can add new products to my store;
@@ -98,6 +98,8 @@ All pages share the same header. The **header** contains:
   * **register** and **login** if the user is an unregistered user;
   * **logout** and **my profile** page if the user is a registered user;
   * **logout**, **add product** and **my profile** page if the user is an admin user;
+
+All pages share the same footer. The footer contains links to social media, to allow the user to know Code Aquatics better, and an email contact, to allow the user to contact Code Aquatics.
 
 The **home** page contains a brief description of Code Aquatics and links to direct the user to the **shop** or to the **blog**.
 
