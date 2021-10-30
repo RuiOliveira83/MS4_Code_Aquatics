@@ -23,7 +23,8 @@
             <div class="col mt-3">
                 <!-- if statement checking if there are items in the bag -->
                 {% if bag_items %}
-                    <div class="table-responsive rounded">
+                    <!-- To be seen on larger screens -->
+                    <div class="table-responsive rounded d-none d-md-block">
                         <table class="table table-sm table-borderless">
                             <thead class="text-black">
                                 <tr>
@@ -114,6 +115,83 @@
                             </tr>
                         </table>
                     </div>
+                    <!-- To be seen on smarphones -->
+                    <div class="d-block d-md-none">
+                        <!-- for loop showing all the items in the bag -->
+                        {% for item in bag_items %}
+                            <div class="row">
+                                <div class="col">
+                                    <!-- if statement to show 'noimage.png' if there is no image -->
+                                    {% if item.product.image %}
+                                        <img class="card-img-top img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                    {% else %}
+                                        <img class="card-img-top img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                                    <p class="my-0">{{ item.product.price }}€</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <form class="form update-form mb-2" method="POST" action="{% url 'adjust_bag' item.item_id %}">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <div class="input-group w-50">
+                                                <div class="input-group-prepend">
+                                                    <button class="decrement-qty btn btn-sm btn-dark rounded-0" 
+                                                        data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                        <span>
+                                                            <i class="fas fa-minus fa-sm"></i>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                                <input class="form-control form-control-sm qty_input" type="number"
+                                                    name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                    data-item_id="{{ item.item_id }}"
+                                                    id="id_qty_{{ item.item_id }}">
+                                                <div class="input-group-append">
+                                                    <button class="increment-qty btn btn-sm btn-dark rounded-0"
+                                                        data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                        <span>
+                                                            <i class="fas fa-plus fa-sm"></i>
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- links to update or remove the item from the bag -->
+                                    <a class="text-info update-link"><small>Update</small></a>
+                                    <a class="text-danger ms-3 remove-link" id="remove_{{ item.item_id }}"><small>Remove</small></a>
+                                </div>
+                            </div>   
+                            <div class="row">
+                                <div class="col">
+                                    <p class="my-0">{{ item.product.price | calc_subtotal:item.quantity }}€</p>
+                                </div>
+                            </div>    
+                            <hr>
+                        {% endfor %}
+                        <h6><strong>Bag Total: {{ total|floatformat:2 }}€</strong></h6>
+                        <h6>Delivery: {{ delivery|floatformat:2 }}€</h6>
+                        <h4 class="mt-2"><strong>Grand Total: {{ grand_total|floatformat:2 }}€</strong></h4>
+                        <a href="{% url 'products' %}" class="btn btn-outline-black rounded-1 btn-lg mb-2">
+                            <span>
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="text-uppercase">Keep Shopping</span>
+                        </a>
+                        <a href="{% url 'checkout' %}" class="btn btn-dark rounded-1 btn-lg">
+                            <span class="text-uppercase">Secure Checkout</span>
+                            <span>
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </a>                         
+                    </div>
                 {% else %}
                     <p class="lead mb-5">Your bag is empty.</p>
                     <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
@@ -140,7 +218,5 @@
 {% block postloadjs %}
 {{ block.super }}
 {% include 'bag/includes/quantity_input_script.html' %}
-
-
 
 {% endblock %}

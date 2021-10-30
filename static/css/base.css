@@ -90,8 +90,6 @@ body {
     color: #98c3c9 !important;
 }
 
-
-
 /* --------------bubbles for index page - from code4education website */
 .background-wrap {
     bottom: 0;
@@ -351,7 +349,7 @@ body {
 .message-container {
     position: fixed;
     top: 72px;
-    right: 15px;
+    right: 8px;
     z-index: 99999999999;
 }
 
@@ -369,10 +367,18 @@ body {
       max-width: 80%;
     }
 }
-
+/* Adjust images smaller screens */
 @media (max-width: 500px) {
     .card-img-top {
         height: 70px;
         width: auto;
     }
+    /* Adjust text on smaller screens */
+    .logo-sm {
+        font-size: 100%;
+        padding-top: 8px;        
+    }
+    .message-container {
+        max-width: 90%;
+      }
 }

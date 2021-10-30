@@ -22,16 +22,12 @@
   - No errors found.
 
 ## Responsiveness of the website
-<!-- It was used [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools) and
-[Responsive Design Checker](https://www.responsivedesignchecker.com/)
- to test the responsiveness of the site.
+It was used [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools),
+[Responsive Design Checker](https://www.responsivedesignchecker.com/) and some personal devices to test the responsiveness of the site.
 
-![Responsiveness](readme-images/responsiveness.png)
+![Responsiveness](images/responsiveness.png)
 
-The website structure adapts well to all used screen sizes. -->
-
-## Functionality of the website
-
+The website structure adapts well to all used screen sizes.
 
 ## Browser compatibility
 The appearance and responsiveness of the website was tested with good results in 4 different web browsers: Microsoft Edge,
@@ -101,4 +97,11 @@ Mozilla Firefox, Google Chrome and Opera.
 
 
 ## Bugs
-
+- On the bag page there was a bug allowing the user to put non integer numbers when adjusting the bag.
+  - This bug was solved by adding some javascript that shows an alert message if the user tries to adjust the quantity to a non integer number.
+- On the checkout page there was a box asking if the user wanted to save the delivery address. The bug was that the new delivery address was always saved, even when this box was left unchecked. The box used was similar to the one used on the boutique ado project, and I had the same bug on the boutique ado project. I spend some time trying to fix this bug with the help of a tutor. We inserted some print messages inside my code and checked that the check box was working fine, but didn't understand why was it still saving the information.
+  - I decided to apply the KISS principle and removed the box. I want to understand why this is happening, unfortunately I don't have time to do it before I finish this project, but it's something I'm planning to do soon.
+- My Rating system wasn't showing the correct amount of stars.
+  - This bug was due to an error in the code, I was using ```>``` instead of ```>=```, therefore it was missing a star when the rating value was an integer.
+- The toast message container wasn't showing properly on smaller screens.
+  - This bug was solved using a media query, changing the message container max-width to 90% on smaller screens.
